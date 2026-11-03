@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nodekeep | Remote Operations</title>
+<meta name="description" content="Private operator dashboard for managed website availability monitoring.">
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/app.js" defer></script>
+</head>
+<body>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><span class="brand-symbol"><span></span><span></span><span></span></span><div><strong>nodekeep<span class="brand-period">.</span></strong><small>REMOTE OPERATIONS</small></div></div>
+  <div class="side-section">MONITORING CONSOLE</div>
+  <nav class="sidenav" aria-label="Sections">
+    <button class="nav-link active" data-view="overview">◈ &nbsp; Overview</button>
+    <button class="nav-link" data-view="clients">♙ &nbsp; Clients</button>
+    <button class="nav-link" data-view="monitors">◉ &nbsp; Monitors</button>
+    <button class="nav-link" data-view="incidents">⚑ &nbsp; Incidents <span class="red-count" id="nav-incidents"></span></button>
+    <button class="nav-link" data-view="reports">▤ &nbsp; Reports</button>
+    <button class="nav-link" data-view="settings">⚙ &nbsp; Operations</button>
+  </nav>
+  <div class="side-bottom">
+    <div class="side-note"><span class="tiny-status"></span> OPERATOR-ONLY WORKSPACE<p>Live checks, real client records, no sample accounts. No card processing or automatic invoicing.</p></div>
+    <div class="account"><div class="account-avatar">NK</div><div><b>Nodekeep operator</b><small>Private monitored infrastructure</small></div></div>
+  </div>
+</aside>
+<div class="main-wrap">
+  <header class="topbar"><div class="top-left"><button class="mobile-menu" id="toggle-menu" aria-label="Open navigation">☰</button><span>OPERATIONS</span><span class="top-divider">/</span><strong id="breadcrumb">Overview</strong></div><div class="top-right"><span class="live-pill"><span></span>ACTIVE MONITOR</span><span class="top-date" id="today"></span><div class="top-avatar">NK</div></div></header>
+  <main class="content" id="content"><div class="empty"><strong>Connecting to your monitoring workspace...</strong></div></main>
+  <footer class="footer">NODEKEEP · Remote Operations <span>•</span> Private operator dashboard <span>•</span> Observed checks are not a guaranteed uptime SLA</footer>
+</div></div>
+<dialog class="modal" id="client-dialog"><form id="client-form" class="modal-body"><div class="modal-head"><div><span class="eyebrow">CUSTOMER ONBOARDING</span><h2>Add a client</h2></div><button type="button" class="close-modal" data-close="client-dialog" aria-label="Close">×</button></div>
+<p>Create a real customer record. No charge or invoice will be created.</p>
+<label>Company name<input name="name" required minlength="2" maxlength="100" placeholder="Acme Services"></label>
+<label>Contact email<input name="email" type="email" maxlength="160" placeholder="team@example.com"></label>
+<label>Industry<input name="industry" maxlength="60" placeholder="Home services"></label>
+<label>Service plan<select name="plan"><option value="essential">Essential</option><option value="managed">Managed</option><option value="complete">Complete</option></select></label>
+<label>Quoted monthly fee (USD, whole dollars)<input name="monthly_quote" type="number" min="0" max="100000" value="99" required></label>
+<p class="modal-hint">Prices are contract quotes, not collected revenue. Handle invoicing separately.</p>
+<div class="modal-actions"><button class="btn quiet" type="button" data-close="client-dialog">Cancel</button><button class="btn primary" type="submit">Save client</button></div>
+</form></dialog>
+<dialog class="modal" id="monitor-dialog"><form id="monitor-form" class="modal-body"><div class="modal-head"><div><span class="eyebrow">LIVE WEBSITE CHECK</span><h2>Add a monitor</h2></div><button type="button" class="close-modal" data-close="monitor-dialog" aria-label="Close">×</button></div>
+<p>Checks real public websites automatically. HTTP(S) ports 80/443 only.</p>
+<label>Client<select name="client_id" id="monitor-client" required></select></label>
+<label>Monitor name<input name="name" required minlength="2" maxlength="100" placeholder="Company website"></label>
+<label>Public HTTPS address<input name="url" type="url" required placeholder="https://example.com"></label>
+<label class="checkline"><input type="checkbox" name="authorized" required> I am authorized by the website owner to monitor this endpoint.</label>
+<p class="modal-hint">Private IPs, localhost, redirects and custom ports are blocked. Checks originate from this server.</p>
+<div class="modal-actions"><button class="btn quiet" type="button" data-close="monitor-dialog">Cancel</button><button class="btn primary" type="submit">Create monitor</button></div>
+</form></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body></html>
