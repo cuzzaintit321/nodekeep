@@ -1,3 +1,5 @@
+![Nodekeep — Self-hosted IT Monitoring Platform](assets/nodekeep-cover.webp)
+
 # Nodekeep — Remote Website Monitoring & Operations
 
 A **working, self-hosted single-operator managed-services application**, not a fictional dashboard. Built with FastAPI, SQLite, a DNS-pinned HTTPS probe, incident management, optional email alerts, and a responsive private admin panel.
